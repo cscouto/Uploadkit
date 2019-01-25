@@ -1,0 +1,10 @@
+//
+//  Localizable.strings
+//  UploadKit
+//
+//  Created by COUTO, TIAGO on 1/25/19.
+//  Copyright © 2019 Couto Code. All rights reserved.
+//
+
+"Data not available at the moment." = "Dados não disponíveis no momento.";
+"No internet connection." = "Não há conexão com a internet.";

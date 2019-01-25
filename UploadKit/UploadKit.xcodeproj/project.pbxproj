@@ -10,6 +10,10 @@
 		75247FEF21FB6DC100D8598A /* UploadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75247FE521FB6DC000D8598A /* UploadKit.framework */; };
 		75247FF421FB6DC100D8598A /* UploadKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75247FF321FB6DC100D8598A /* UploadKitTests.swift */; };
 		75247FF621FB6DC100D8598A /* UploadKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 75247FE821FB6DC000D8598A /* UploadKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7524800521FB77BF00D8598A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7524800421FB77BF00D8598A /* Alamofire.framework */; };
+		7524800821FB7BB600D8598A /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524800721FB7BB600D8598A /* BaseAPI.swift */; };
+		7524800A21FB877000D8598A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524800921FB877000D8598A /* Constants.swift */; };
+		7524801521FB8B3300D8598A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7524801721FB8B3300D8598A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,11 @@
 		75247FEE21FB6DC100D8598A /* UploadKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UploadKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75247FF321FB6DC100D8598A /* UploadKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadKitTests.swift; sourceTree = "<group>"; };
 		75247FF521FB6DC100D8598A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7524800421FB77BF00D8598A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		7524800721FB7BB600D8598A /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		7524800921FB877000D8598A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7524801621FB8B3300D8598A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7524801821FB8B3800D8598A /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7524800521FB77BF00D8598A /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +67,7 @@
 				75247FE721FB6DC000D8598A /* UploadKit */,
 				75247FF221FB6DC100D8598A /* UploadKitTests */,
 				75247FE621FB6DC000D8598A /* Products */,
+				7524800321FB77BF00D8598A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,8 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				7524800021FB6F0C00D8598A /* Data */,
-				75247FE821FB6DC000D8598A /* UploadKit.h */,
-				75247FE921FB6DC000D8598A /* Info.plist */,
+				7524800C21FB883C00D8598A /* Supporting files */,
+				7524800B21FB877F00D8598A /* Util */,
 			);
 			path = UploadKit;
 			sourceTree = "<group>";
@@ -114,8 +125,35 @@
 		7524800221FB74A800D8598A /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7524800721FB7BB600D8598A /* BaseAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		7524800321FB77BF00D8598A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7524800421FB77BF00D8598A /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7524800B21FB877F00D8598A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7524800921FB877000D8598A /* Constants.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7524800C21FB883C00D8598A /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				75247FE921FB6DC000D8598A /* Info.plist */,
+				75247FE821FB6DC000D8598A /* UploadKit.h */,
+				7524801721FB8B3300D8598A /* Localizable.strings */,
+			);
+			name = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +178,7 @@
 				75247FE121FB6DC000D8598A /* Sources */,
 				75247FE221FB6DC000D8598A /* Frameworks */,
 				75247FE321FB6DC000D8598A /* Resources */,
+				7524800621FB77D100D8598A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -180,6 +219,7 @@
 				TargetAttributes = {
 					75247FE421FB6DC000D8598A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					75247FED21FB6DC100D8598A = {
 						CreatedOnToolsVersion = 10.0;
@@ -192,6 +232,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"pt-BR",
 			);
 			mainGroup = 75247FDB21FB6DC000D8598A;
 			productRefGroup = 75247FE621FB6DC000D8598A /* Products */;
@@ -209,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7524801521FB8B3300D8598A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,11 +263,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7524800621FB77D100D8598A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		75247FE121FB6DC000D8598A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7524800821FB7BB600D8598A /* BaseAPI.swift in Sources */,
+				7524800A21FB877000D8598A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,11 +312,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		7524801721FB8B3300D8598A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7524801621FB8B3300D8598A /* en */,
+				7524801821FB8B3800D8598A /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		75247FF721FB6DC100D8598A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -316,6 +394,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -373,6 +452,7 @@
 		75247FFA21FB6DC100D8598A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -380,6 +460,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = UploadKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -390,6 +474,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coutocode.UploadKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -398,6 +483,7 @@
 		75247FFB21FB6DC100D8598A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -405,6 +491,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = UploadKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -423,6 +513,7 @@
 		75247FFD21FB6DC100D8598A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VNZYKRW4QR;
 				INFOPLIST_FILE = UploadKitTests/Info.plist;
@@ -441,6 +532,7 @@
 		75247FFE21FB6DC100D8598A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VNZYKRW4QR;
 				INFOPLIST_FILE = UploadKitTests/Info.plist;
