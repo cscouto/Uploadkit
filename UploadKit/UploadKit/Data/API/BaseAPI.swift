@@ -21,6 +21,11 @@ struct BaseAPI {
                         headers: [String: String]? = nil,
                         completion: @escaping (RequestResult) -> Void) {
         
+        guard isConnectedToInternet() else {
+            completion(.failure(ErrorMessages.no_internet))
+            return
+        }
+        
         guard let params = parameters else {
             Alamofire
                 .request(url, method: method, headers: headers)
@@ -72,10 +77,14 @@ struct BaseAPI {
             if let json = value as? [String : Any] {
                 completion(.success(json))
             }else{
-                completion(.failure(ErrorMessages.data_not_available.rawValue))
+                completion(.failure(ErrorMessages.data_not_available))
             }
         case .failure(let error):
             completion(.failure(error.localizedDescription))
         }
+    }
+    
+    private static func isConnectedToInternet() -> Bool {
+        return NetworkReachabilityManager()!.isReachable
     }
 }

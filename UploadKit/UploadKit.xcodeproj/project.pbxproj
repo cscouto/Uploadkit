@@ -14,6 +14,8 @@
 		7524800821FB7BB600D8598A /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524800721FB7BB600D8598A /* BaseAPI.swift */; };
 		7524800A21FB877000D8598A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524800921FB877000D8598A /* Constants.swift */; };
 		7524801521FB8B3300D8598A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7524801721FB8B3300D8598A /* Localizable.strings */; };
+		7524801B21FB8F4300D8598A /* RequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524801A21FB8F4300D8598A /* RequestObject.swift */; };
+		7524801E21FB907400D8598A /* RequestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524801D21FB907400D8598A /* RequestInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		7524800921FB877000D8598A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7524801621FB8B3300D8598A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7524801821FB8B3800D8598A /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7524801A21FB8F4300D8598A /* RequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestObject.swift; sourceTree = "<group>"; };
+		7524801D21FB907400D8598A /* RequestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 		75247FE721FB6DC000D8598A /* UploadKit */ = {
 			isa = PBXGroup;
 			children = (
+				7524801C21FB905400D8598A /* Interactor */,
+				7524801921FB8D4100D8598A /* Model */,
 				7524800021FB6F0C00D8598A /* Data */,
 				7524800C21FB883C00D8598A /* Supporting files */,
 				7524800B21FB877F00D8598A /* Util */,
@@ -154,6 +160,22 @@
 				7524801721FB8B3300D8598A /* Localizable.strings */,
 			);
 			name = "Supporting files";
+			sourceTree = "<group>";
+		};
+		7524801921FB8D4100D8598A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7524801A21FB8F4300D8598A /* RequestObject.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7524801C21FB905400D8598A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				7524801D21FB907400D8598A /* RequestInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +313,8 @@
 			files = (
 				7524800821FB7BB600D8598A /* BaseAPI.swift in Sources */,
 				7524800A21FB877000D8598A /* Constants.swift in Sources */,
+				7524801E21FB907400D8598A /* RequestInteractor.swift in Sources */,
+				7524801B21FB8F4300D8598A /* RequestObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
