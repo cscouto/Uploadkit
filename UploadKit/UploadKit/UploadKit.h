@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import <UploadKit/NetWorkManager.h>
+
 //! Project version number for UploadKit.
 FOUNDATION_EXPORT double UploadKitVersionNumber;
 

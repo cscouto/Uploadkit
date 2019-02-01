@@ -16,6 +16,8 @@
 		7524801521FB8B3300D8598A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7524801721FB8B3300D8598A /* Localizable.strings */; };
 		7524801B21FB8F4300D8598A /* RequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524801A21FB8F4300D8598A /* RequestObject.swift */; };
 		7524801E21FB907400D8598A /* RequestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524801D21FB907400D8598A /* RequestInteractor.swift */; };
+		75C8A0B52204AB960017E623 /* NetWorkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 75C8A0B32204AB960017E623 /* NetWorkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75C8A0B62204AB960017E623 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C8A0B42204AB960017E623 /* NetWorkManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		7524801821FB8B3800D8598A /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7524801A21FB8F4300D8598A /* RequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestObject.swift; sourceTree = "<group>"; };
 		7524801D21FB907400D8598A /* RequestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInteractor.swift; sourceTree = "<group>"; };
+		75C8A0B32204AB960017E623 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
+		75C8A0B42204AB960017E623 /* NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 		7524800B21FB877F00D8598A /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				75C8A0B42204AB960017E623 /* NetWorkManager.m */,
 				7524800921FB877000D8598A /* Constants.swift */,
 			);
 			path = Util;
@@ -156,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				75247FE921FB6DC000D8598A /* Info.plist */,
+				75C8A0B32204AB960017E623 /* NetWorkManager.h */,
 				75247FE821FB6DC000D8598A /* UploadKit.h */,
 				7524801721FB8B3300D8598A /* Localizable.strings */,
 			);
@@ -186,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75247FF621FB6DC100D8598A /* UploadKit.h in Headers */,
+				75C8A0B52204AB960017E623 /* NetWorkManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +322,7 @@
 				7524800A21FB877000D8598A /* Constants.swift in Sources */,
 				7524801E21FB907400D8598A /* RequestInteractor.swift in Sources */,
 				7524801B21FB8F4300D8598A /* RequestObject.swift in Sources */,
+				75C8A0B62204AB960017E623 /* NetWorkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +506,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coutocode.UploadKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -529,6 +538,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coutocode.UploadKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

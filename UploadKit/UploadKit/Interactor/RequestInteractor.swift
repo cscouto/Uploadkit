@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 
+
 protocol UploadRequestDelegate {
     func successfulRequest(with response: [String: Any])
     func failedRequest(with error: String)
@@ -17,6 +18,8 @@ protocol UploadRequestDelegate {
 class RequestInteractor {
     
     static let shared = RequestInteractor()
+    
+    let internetReachability = NetWorkManager.reachabilityForInternetConnection()
     
     var delegate: UploadRequestDelegate?
     
@@ -29,10 +32,19 @@ class RequestInteractor {
     init() {
         pendingObjects = [RequestObject]()
         failedObjects = [RequestObject]()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: NSNotification.Name.reachabilityChanged, object: nil)
+        internetReachability?.startNotifier()
+        updateInterfaceWithReachability(reachability: self.internetReachability!)
     }
     
     func addRequest(name: String, url: String, method: HTTPMethod, parameters: Any?, headers: [String: String]?) {
-        let request = RequestObject(requestName: name, url: url, method: method, parameters: parameters, headers: headers, status: .pending)
+        let request = RequestObject(requestName: name,
+                                    url: url,
+                                    method: method,
+                                    parameters: parameters,
+                                    headers: headers,
+                                    status: .pending)
         add(request: request)
     }
     
@@ -50,7 +62,7 @@ class RequestInteractor {
         }
     }
     
-    func requestFailedObjects() {
+    private func requestFailedObjects() {
         while failedObjects.count > 0 {
             make(request: failedObjects.removeFirst())
         }
@@ -68,5 +80,20 @@ class RequestInteractor {
                 self?.delegate?.failedRequest(with: error)
             }
         }
+    }
+    
+    func updateInterfaceWithReachability(reachability: NetWorkManager){
+        let netStatus : NetworkStatus = reachability.currentReachabilityStatus()
+        switch (netStatus) {
+        case .NotReachable:
+            break
+        default:
+            requestFailedObjects()
+        }
+    }
+    
+    @objc func reachabilityChanged(sender : NSNotification!){
+        let curReach : NetWorkManager = sender.object as! NetWorkManager
+        self.updateInterfaceWithReachability(reachability: curReach)
     }
 }
