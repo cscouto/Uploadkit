@@ -18,6 +18,8 @@
 		7524801E21FB907400D8598A /* RequestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7524801D21FB907400D8598A /* RequestInteractor.swift */; };
 		75C8A0B52204AB960017E623 /* NetWorkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 75C8A0B32204AB960017E623 /* NetWorkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75C8A0B62204AB960017E623 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C8A0B42204AB960017E623 /* NetWorkManager.m */; };
+		75C8A0B92204C97B0017E623 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8A0B82204C97B0017E623 /* DataStore.swift */; };
+		75C8A0BC2204CCCF0017E623 /* UploadKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75C8A0BA2204CCCF0017E623 /* UploadKit.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		7524801D21FB907400D8598A /* RequestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInteractor.swift; sourceTree = "<group>"; };
 		75C8A0B32204AB960017E623 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
 		75C8A0B42204AB960017E623 /* NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkManager.m; sourceTree = "<group>"; };
+		75C8A0B82204C97B0017E623 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		75C8A0BB2204CCCF0017E623 /* UploadKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UploadKit.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,8 @@
 		7524800121FB749E00D8598A /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				75C8A0B82204C97B0017E623 /* DataStore.swift */,
+				75C8A0BA2204CCCF0017E623 /* UploadKit.xcdatamodeld */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -318,7 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75C8A0BC2204CCCF0017E623 /* UploadKit.xcdatamodeld in Sources */,
 				7524800821FB7BB600D8598A /* BaseAPI.swift in Sources */,
+				75C8A0B92204C97B0017E623 /* DataStore.swift in Sources */,
 				7524800A21FB877000D8598A /* Constants.swift in Sources */,
 				7524801E21FB907400D8598A /* RequestInteractor.swift in Sources */,
 				7524801B21FB8F4300D8598A /* RequestObject.swift in Sources */,
@@ -613,6 +621,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		75C8A0BA2204CCCF0017E623 /* UploadKit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				75C8A0BB2204CCCF0017E623 /* UploadKit.xcdatamodel */,
+			);
+			currentVersion = 75C8A0BB2204CCCF0017E623 /* UploadKit.xcdatamodel */;
+			path = UploadKit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 75247FDC21FB6DC000D8598A /* Project object */;
 }

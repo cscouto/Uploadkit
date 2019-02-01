@@ -12,3 +12,9 @@ struct ErrorMessages {
     static let data_not_available = NSLocalizedString("Data not available at the moment.", comment: "")
     static let no_internet = NSLocalizedString("No internet connection.", comment: "")
 }
+
+struct Database {
+    struct Table {
+        static let requestObjectDB = "RequestObjectDB"
+    }
+}

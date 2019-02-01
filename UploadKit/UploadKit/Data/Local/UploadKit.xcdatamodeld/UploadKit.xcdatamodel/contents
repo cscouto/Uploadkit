@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G2208" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RequestObjectDB" representedClassName="RequestObjectDB" syncable="YES" codeGenerationType="class">
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="headers" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="id" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="method" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="parameters" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="status" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="RequestObjectDB" positionX="-63" positionY="-18" width="128" height="165"/>
+    </elements>
+</model>
