@@ -15,20 +15,16 @@ enum RequestResult {
 
 struct BaseAPI {
     
-    static func request(url: String,
-                        method: HTTPMethod,
-                        parameters: Any? = nil,
-                        headers: [String: String]? = nil,
-                        completion: @escaping (RequestResult) -> Void) {
+    static func request(object: RequestObject, completion: @escaping (RequestResult) -> Void) {
         
         guard isConnectedToInternet() else {
             completion(.failure(ErrorMessages.no_internet))
             return
         }
         
-        guard let params = parameters else {
+        guard let params = object.parameters else {
             Alamofire
-                .request(url, method: method, headers: headers)
+                .request(object.url, method: object.method, headers: object.headers)
                 .responseJSON { response in
                     processResponse(response: response, completion: completion)
             }
@@ -37,19 +33,19 @@ struct BaseAPI {
         
         if params is [String: Any] {
             Alamofire
-                .request(url,
-                         method: method,
+                .request(object.url,
+                         method: object.method,
                          parameters: params as? [String: Any],
-                         headers: headers)
+                         headers: object.headers)
                 .responseJSON { response in
                 processResponse(response: response, completion: completion)
             }
         } else {
             Alamofire
                 .request(
-                    createRequest(urlString: url,
-                                  method: method,
-                                  headers: headers))
+                    createRequest(urlString: object.url,
+                                  method: object.method,
+                                  headers: object.headers))
                 .responseJSON { response in
                 processResponse(response: response, completion: completion)
             }

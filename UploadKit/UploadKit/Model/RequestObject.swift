@@ -13,10 +13,12 @@ enum StatusRequest {
 }
 
 struct RequestObject {
+    let requestId: String = UUID().uuidString
+    var requestName: String
     var url: String
     var method: HTTPMethod
     var parameters: Any? = nil
     var headers: [String: String]? = nil
-    var createdOn: Date = Date()
+    let createdOn: Date = Date()
     var status: StatusRequest = .pending
 }
