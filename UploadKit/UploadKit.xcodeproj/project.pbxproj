@@ -29,6 +29,7 @@
 		75C8A0E42204ED4C0017E623 /* UploadKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75247FE521FB6DC000D8598A /* UploadKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		75C8A0E82205012A0017E623 /* UploadKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75C8A0BA2204CCCF0017E623 /* UploadKit.xcdatamodeld */; };
 		75C8A0E92205012B0017E623 /* UploadKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75C8A0BA2204CCCF0017E623 /* UploadKit.xcdatamodeld */; };
+		75C8A0EC2208A6080017E623 /* UploadKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8A0EB2208A6080017E623 /* UploadKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		75C8A0CA2204EA170017E623 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75C8A0CD2204EA170017E623 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75C8A0CF2204EA170017E623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75C8A0EB2208A6080017E623 /* UploadKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 		75247FE721FB6DC000D8598A /* UploadKit */ = {
 			isa = PBXGroup;
 			children = (
+				75C8A0EA2208A5E40017E623 /* Interface */,
 				7524801C21FB905400D8598A /* Interactor */,
 				7524801921FB8D4100D8598A /* Model */,
 				7524800021FB6F0C00D8598A /* Data */,
@@ -240,6 +243,14 @@
 				75C8A0CF2204EA170017E623 /* Info.plist */,
 			);
 			path = UploadKitExample;
+			sourceTree = "<group>";
+		};
+		75C8A0EA2208A5E40017E623 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				75C8A0EB2208A6080017E623 /* UploadKit.swift */,
+			);
+			path = Interface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,6 +428,7 @@
 				7524801E21FB907400D8598A /* RequestInteractor.swift in Sources */,
 				7524801B21FB8F4300D8598A /* RequestObject.swift in Sources */,
 				75C8A0B62204AB960017E623 /* NetWorkManager.m in Sources */,
+				75C8A0EC2208A6080017E623 /* UploadKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

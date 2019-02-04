@@ -1,0 +1,11 @@
+framework module UploadKit {
+  umbrella header "UploadKit.h"
+
+  export *
+  module * { export * }
+}
+
+module UploadKit.Swift {
+    header "UploadKit-Swift.h"
+    requires objc
+}

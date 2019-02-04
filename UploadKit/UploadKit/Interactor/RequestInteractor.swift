@@ -15,17 +15,17 @@ public protocol UploadRequestDelegate {
     func failedRequest(with error: String)
 }
 
-public final class RequestInteractor {
+class RequestInteractor {
     
     public static let shared = RequestInteractor()
     
     let internetReachability = NetWorkManager.reachabilityForInternetConnection()
     
-    public var delegate: UploadRequestDelegate?
+    var delegate: UploadRequestDelegate?
     
     private var lastStatus: NetworkStatus = .NotReachable
     
-    private var requests: [RequestObject] {
+    var requests: [RequestObject] {
         didSet {
             if lastStatus != .NotReachable {
                 requestPendingObjects()
@@ -33,16 +33,11 @@ public final class RequestInteractor {
                 for i in 0..<requests.count {
                     requests[i].status = .failed
                 }
+                DispatchQueue.main.async {
+                    self.delegate?.failedRequest(with: ErrorMessages.no_internet)
+                }
             }
         }
-    }
-    
-    public var pendingObjects: [RequestObject] {
-        return requests.filter{ $0.status == .pending}
-    }
-    
-    public var failedObjects: [RequestObject] {
-        return requests.filter{ $0.status == .failed}
     }
     
     init() {
@@ -55,7 +50,7 @@ public final class RequestInteractor {
         loadRequests()
     }
     
-    public func addRequest(name: String, url: String, method: HTTPMethod, parameters: Any?, headers: [String: String]?) {
+    func addRequest(name: String, url: String, method: HTTPMethod, parameters: Any?, headers: [String: String]?) {
         let request = RequestObject(name: name,
                                     url: url,
                                     method: method,
@@ -95,6 +90,7 @@ public final class RequestInteractor {
             do {
                 if let fetchedRequest = try context.fetch(fetchRequest).first {
                     context.delete(fetchedRequest)
+                    try context.save()
                 }
             }catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")

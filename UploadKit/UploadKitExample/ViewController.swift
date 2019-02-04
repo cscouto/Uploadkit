@@ -15,9 +15,10 @@ class ViewController: UIViewController {
     
     var selectedIndex = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        RequestInteractor.shared.delegate = self
+        UploadKit.delegate = self
     }
 
     @IBAction func filter(_ sender: UISegmentedControl) {
@@ -26,18 +27,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func request(_ sender: UIBarButtonItem) {
-        RequestInteractor.shared.addRequest(name: "Weather", url: "https://opentdb.com/api.php?amount=10", method: .get, parameters: nil, headers: nil)
+        UploadKit.addRequest(name: "Weather", url: "https://opentdb.com/api.php?amount=10", method: .get, parameters: nil, headers: nil)
     }
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedIndex == 0 ? RequestInteractor.shared.pendingObjects.count : RequestInteractor.shared.failedObjects.count
+        return selectedIndex == 0 ? UploadKit.pendingObjects.count : UploadKit.failedObjects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let item = selectedIndex == 0 ? RequestInteractor.shared.pendingObjects[indexPath.row] : RequestInteractor.shared.failedObjects[indexPath.row]
+        let item = selectedIndex == 0 ? UploadKit.pendingObjects[indexPath.row] : UploadKit.failedObjects[indexPath.row]
         cell.textLabel?.text = item.url
         return cell
     }
@@ -46,7 +47,7 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UploadRequestDelegate {
     func successfulRequest(with response: [String: Any]) {
         tableView.reloadData()
-        print(response)
+        print("CAAALLL")
     }
     
     func failedRequest(with error: String) {
