@@ -8,20 +8,20 @@
 import Alamofire
 import CoreData
 
-enum StatusRequest: String {
+public enum StatusRequest: String {
     case pending
     case failed
 }
 
-struct RequestObject {
-    var id: String = UUID().uuidString
-    var name: String
-    var url: String
-    var method: HTTPMethod
-    var parameters: Any? = nil
-    var headers: [String: String]? = nil
-    var createdOn: Date? = Date()
-    var status: StatusRequest = .pending
+public struct RequestObject {
+    public var id: String = UUID().uuidString
+    public var name: String
+    public var url: String
+    public var method: HTTPMethod
+    public var parameters: Any? = nil
+    public var headers: [String: String]? = nil
+    public var createdOn: Date? = Date()
+    public var status: StatusRequest = .pending
     
     init(name: String, url: String, method: HTTPMethod, parameters: Any?, headers: [String: String]?) {
         self.name = name

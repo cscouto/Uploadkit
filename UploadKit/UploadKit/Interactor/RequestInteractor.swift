@@ -10,29 +10,43 @@ import Foundation
 import Alamofire
 import CoreData
 
-
-protocol UploadRequestDelegate {
+public protocol UploadRequestDelegate {
     func successfulRequest(with response: [String: Any])
     func failedRequest(with error: String)
 }
 
-class RequestInteractor {
+public final class RequestInteractor {
     
-    static let shared = RequestInteractor()
+    public static let shared = RequestInteractor()
     
     let internetReachability = NetWorkManager.reachabilityForInternetConnection()
     
-    var delegate: UploadRequestDelegate?
+    public var delegate: UploadRequestDelegate?
     
-    var pendingObjects: [RequestObject] {
-        didSet { requestPendingObjects() }
+    private var lastStatus: NetworkStatus = .NotReachable
+    
+    private var requests: [RequestObject] {
+        didSet {
+            if lastStatus != .NotReachable {
+                requestPendingObjects()
+            } else {
+                for i in 0..<requests.count {
+                    requests[i].status = .failed
+                }
+            }
+        }
     }
     
-    var failedObjects: [RequestObject]
+    public var pendingObjects: [RequestObject] {
+        return requests.filter{ $0.status == .pending}
+    }
+    
+    public var failedObjects: [RequestObject] {
+        return requests.filter{ $0.status == .failed}
+    }
     
     init() {
-        pendingObjects = [RequestObject]()
-        failedObjects = [RequestObject]()
+        requests = [RequestObject]()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: NSNotification.Name.reachabilityChanged, object: nil)
         internetReachability?.startNotifier()
@@ -41,7 +55,7 @@ class RequestInteractor {
         loadRequests()
     }
     
-    func addRequest(name: String, url: String, method: HTTPMethod, parameters: Any?, headers: [String: String]?) {
+    public func addRequest(name: String, url: String, method: HTTPMethod, parameters: Any?, headers: [String: String]?) {
         let request = RequestObject(name: name,
                                     url: url,
                                     method: method,
@@ -54,18 +68,18 @@ class RequestInteractor {
         DataStore.performBackgroundTask { (context) in
             self.createObjectInDatabase(request: request, context: context)
             try? context.save()
-            self.pendingObjects.append(request)
+            self.requests.append(request)
         }
     }
     
     private func loadRequests() {
         DataStore.performBackgroundTask({ (context) in
-            let fetchRequest = NSFetchRequest<RequestObjectDB>()
+            let fetchRequest = NSFetchRequest<RequestObjectDB>(entityName: "RequestObjectDB")
             do {
                let objects = try context.fetch(fetchRequest)
                 for requestDB in objects {
                     let request = RequestObject(requestDB: requestDB)
-                    request.status == .pending ? self.pendingObjects.append(request) : self.failedObjects.append(request)
+                    self.requests.append(request)
                 }
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
@@ -75,7 +89,7 @@ class RequestInteractor {
     
     private func remove(request: RequestObject) {
         DataStore.performBackgroundTask({ (context) in
-            let fetchRequest = NSFetchRequest<RequestObjectDB>()
+            let fetchRequest = NSFetchRequest<RequestObjectDB>(entityName: "RequestObjectDB")
             fetchRequest.predicate = NSPredicate(format: "id == %@", request.id)
             fetchRequest.fetchLimit = 1
             do {
@@ -90,7 +104,7 @@ class RequestInteractor {
     
     private func update(request: RequestObject) {
         DataStore.performBackgroundTask({ (context) in
-            let fetchRequest = NSFetchRequest<RequestObjectDB>()
+            let fetchRequest = NSFetchRequest<RequestObjectDB>(entityName: "RequestObjectDB")
             fetchRequest.predicate = NSPredicate(format: "id == %@", request.id)
             fetchRequest.fetchLimit = 1
             do {
@@ -105,18 +119,14 @@ class RequestInteractor {
     }
     
     private func addFailed(request: RequestObject) {
-        failedObjects.append(request)
+        var req = request
+        req.status = .failed
+        requests.append(request)
     }
     
     private func requestPendingObjects() {
-        while pendingObjects.count > 0 {
-            make(request: pendingObjects.removeFirst())
-        }
-    }
-    
-    private func requestFailedObjects() {
-        while failedObjects.count > 0 {
-            make(request: failedObjects.removeFirst())
+        while requests.count > 0 {
+            make(request: requests.removeFirst())
         }
     }
     
@@ -124,25 +134,30 @@ class RequestInteractor {
         BaseAPI.request(object: request) { [weak self] result in
             switch result {
             case .success(let json):
-                self?.delegate?.successfulRequest(with: json)
+                DispatchQueue.main.async {
+                    self?.delegate?.successfulRequest(with: json)
+                }
                 self?.remove(request: request)
             case .failure(let error):
                 var requestReturn = request
                 requestReturn.status = .failed
                 self?.addFailed(request: requestReturn)
                 self?.update(request: requestReturn)
-                self?.delegate?.failedRequest(with: error)
+                DispatchQueue.main.async {
+                    self?.delegate?.failedRequest(with: error)
+                }
             }
         }
     }
     
     func updateInterfaceWithReachability(reachability: NetWorkManager){
         let netStatus : NetworkStatus = reachability.currentReachabilityStatus()
+        lastStatus = netStatus
         switch (netStatus) {
         case .NotReachable:
             break
         default:
-            requestFailedObjects()
+            requestPendingObjects()
         }
     }
     
@@ -152,7 +167,8 @@ class RequestInteractor {
     }
     
     private func createObjectInDatabase(request: RequestObject, context: NSManagedObjectContext) {
-        let requestDB = RequestObjectDB(context: context)
+        let entity = NSEntityDescription.entity(forEntityName: "RequestObjectDB", in: context)
+        let requestDB = RequestObjectDB(entity: entity!, insertInto: context)
         requestDB.createdOn = request.createdOn
         requestDB.method = request.method.rawValue
         requestDB.id = request.id
